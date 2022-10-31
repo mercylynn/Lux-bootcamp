@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CreateList from "./components/CreateList";
+import DisplayList from "./components/DisplayList";
+import './App.css'
+
 
 function App() {
+  const [taskList, setTaskList] = useState([{title: 'Task 1', id:'2'}])
+
+  function handleDelete(id){
+  let remTasks = taskList.filter(task=> task.id !== id)
+  setTaskList(remTasks)
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CreateList setTaskList= {setTaskList}/>
+      <DisplayList list ={taskList} handleDelete = {handleDelete}/>
     </div>
   );
 }
