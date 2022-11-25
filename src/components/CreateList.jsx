@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
+import {listContext} from "../App"
 
-function CreateList({setTaskList}) {
+
+function CreateList() {
+
+    const {setTaskList} = useContext(listContext)
+    
     const [taskTitle, setTaskTitle] = useState(' ')
     const handleInput = (e)=>{
         setTaskTitle(e.target.value)
+
 
     }
     const handleCreateTask =(e)=>{
@@ -23,6 +29,7 @@ function CreateList({setTaskList}) {
             <input type='text' name= 'list' placeholder= 'Create Task' onChange={handleInput}/>
             <button type='button' onClick={handleCreateTask}>Submit</button>
         </div>
+       
     </div>
   )
 }
